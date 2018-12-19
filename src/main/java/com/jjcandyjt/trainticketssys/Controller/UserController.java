@@ -22,23 +22,23 @@ public class UserController {
     public Map loginin(@RequestParam String username,@RequestParam String password,@RequestParam int status){
         Map map=null;
         if(status==2){
-            map=UserService.superUserloginin(username,password,"superuser");
+            map=userService.superUserloginin(username,password,"_SUser");
 
         }
         if(status==1){
-            map=UserService.superUserloginin(username,password,"netuser");
+            map=userService.superUserloginin(username,password,"_User");
         }
         return map;//包含身份证,联系电话
     }
     @PostMapping(value = "/signin")
-    public Map signin(@RequestParam String idcard,@RequestParam String username,@RequestParam String password,@RequestParam String tele){
+    public Map signin(@RequestParam String idcard,@RequestParam String username,@RequestParam String password,@RequestParam String tele,String name){
         Map map=new HashMap();
 
         int res=userService.canSign(idcard,username);
         switch (res){
             case -1:map.put("info",-1);break;
             case -2:map.put("info",-2);break;
-            case 1:userService.signin(idcard,username,password,tele);map.put("info",1);break;
+            case 1:userService.signin(idcard,username,password,tele,name);map.put("info",1);break;
             default:map.put("info","未知错误");
         }
         return map;//包含身份证,联系电话
@@ -47,6 +47,17 @@ public class UserController {
     public List mytest(){
         List list=jdbcTemplate.queryForList("select * from netuser");
         return list;
+    }
+    @PostMapping(value = "/updateTele")
+    public Boolean updateTele(@RequestParam String username,@RequestParam String newTele){
+        try {
+            jdbcTemplate.update("update _USER set Utel =? where  Uno =?",new Object[]{newTele,username});
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
+
     }
 
 }
