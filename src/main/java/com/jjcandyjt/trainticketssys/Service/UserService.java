@@ -24,29 +24,6 @@ public class UserService {
     private JdbcTemplate jdbcTemplate;
     //登录
     public  Map superUserloginin(String username,String password,String status){
-        //Connection conn = DBHelper.getConn();
-//        String sql = "select * from "+status+" where username = '"+username+"'and password='"+password+"'";
-//        System.out.println(sql);
-//        PreparedStatement pstmt;
-//        ResultSet ret;
-//        String idcard=null;
-//        String tele=null;
-//        try {
-//            pstmt = (PreparedStatement) conn.prepareStatement(sql);
-//            ret=pstmt.executeQuery();
-//
-//            while(ret.next()){
-//                idcard=ret.getString("idcard");
-//                tele=ret.getString("tele");
-//                System.out.println(idcard);
-//            }
-//
-//            ret.close();
-//            pstmt.close();
-//            conn.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
         try {
             Map temp;
             if(status.equals("_User")){

@@ -37,7 +37,8 @@ public class TS_Controller {
     }
 
     @GetMapping(value="/FindSeat")
-    public List FindSeat(@RequestParam String Tno_c,@RequestParam short Ano_c, @RequestParam String sdate, @RequestParam short sSorder_c, @RequestParam short eSorder_c, @RequestParam int mile){
+    public List FindSeat(@RequestParam String Tno_c,@RequestParam short Ano_c, @RequestParam String sdate,
+                         @RequestParam short sSorder_c, @RequestParam short eSorder_c, @RequestParam int mile){
         eSorder_c--;
         List<Map<String,Object>> list=null;
         synchronized (Order_Controller.TLock){

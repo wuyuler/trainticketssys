@@ -1,7 +1,6 @@
 package com.jjcandyjt.trainticketssys.Service;
 
 
-import com.jjcandyjt.trainticketssys.Domain.Train;
 import com.jjcandyjt.trainticketssys.Utils.DBHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
